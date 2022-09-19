@@ -1,0 +1,476 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "InventoryControlAPI",
+    "version": "1.0.0",
+    "description": "InventoryControlAPI"
+  },
+  "paths": {
+    "/connect/upload": {
+      "post": {
+        "operationId": "POST_CreateUser",
+        "responses": {
+          "201": {
+            "description": "The operation was successful.",
+            "schema": {
+              "$ref": "#/definitions/CreateUserRes"
+            }
+          },
+          "400": {
+            "description": "Invalid or misspelled input parameter error.",
+            "schema": {
+              "$ref": "#/definitions/Messages"
+            }
+          },
+          "401": {
+            "description": "Authentication.",
+            "schema": {
+              "$ref": "#/definitions/Messages"
+            }
+          },
+          "403": {
+            "description": "Authorization.",
+            "schema": {
+              "$ref": "#/definitions/Messages"
+            }
+          },
+          "415": {
+            "description": "Mandatory parameters missing.",
+            "schema": {
+              "$ref": "#/definitions/Messages"
+            }
+          },
+          "422": {
+            "description": "Wrong/Invalid parameter(s).",
+            "schema": {
+              "$ref": "#/definitions/Messages"
+            }
+          },
+          "500": {
+            "description": "No response from Backend.",
+            "schema": {
+              "$ref": "#/definitions/Messages"
+            }
+          },
+          "504": {
+            "description": "TimeOut from server.",
+            "schema": {
+              "$ref": "#/definitions/Messages"
+            }
+          }
+        },
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "description": "Servicio para dar de alta a un usuario",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateUserReq"
+            },
+            "description": "Body",
+            "required": true
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "ApplicationId",
+            "in": "header",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "CompanyCode",
+            "in": "header",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/getProduct/{productId}": {
+      "get": {
+        "operationId": "GET_ServiceOrder",
+        "responses": {
+          "200": {
+            "description": "The operation was successful.",
+            "schema": {
+              "$ref": "#/definitions/GetProductRes"
+            }
+          },
+          "204": {
+            "description": "No Content.",
+            "schema": {
+              "$ref": "#/definitions/GetProductRes204"
+            }
+          },
+          "400": {
+            "description": "Invalid or misspelled input parameter error.",
+            "schema": {
+              "$ref": "#/definitions/Messages"
+            }
+          },
+          "401": {
+            "description": "Authentication.",
+            "schema": {
+              "$ref": "#/definitions/Messages"
+            }
+          },
+          "403": {
+            "description": "Authorization.",
+            "schema": {
+              "$ref": "#/definitions/Messages"
+            }
+          },
+          "415": {
+            "description": "Mandatory parameters missing.",
+            "schema": {
+              "$ref": "#/definitions/Messages"
+            }
+          },
+          "422": {
+            "description": "Wrong/Invalid parameter(s).",
+            "schema": {
+              "$ref": "#/definitions/Messages"
+            }
+          },
+          "500": {
+            "description": "No response from Backend.",
+            "schema": {
+              "$ref": "#/definitions/Messages"
+            }
+          },
+          "504": {
+            "description": "TimeOut from server.",
+            "schema": {
+              "$ref": "#/definitions/Messages"
+            }
+          }
+        },
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "description": "Servicio para obtener detalle de un producto dado.",
+        "parameters": [
+          {
+            "required": true,
+            "name": "productId",
+            "in": "path",
+            "type": "integer"
+          },
+          {
+            "name": "pOffset",
+            "in": "query",
+            "type": "number"
+          },
+          {
+            "name": "pLimit",
+            "in": "query",
+            "type": "integer"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "ApplicationId",
+            "in": "header",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "CompanyCode",
+            "in": "header",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/upload/product": {
+      "post": {
+        "operationId": "POST /CreateOrder",
+        "responses": {
+          "200": {
+            "description": "The operation was successful.",
+            "schema": {
+              "$ref": "#/definitions/UploadProductRes"
+            }
+          },
+          "400": {
+            "description": "Invalid or misspelled input parameter error.",
+            "schema": {
+              "$ref": "#/definitions/Messages"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+              "$ref": "#/definitions/Messages"
+            }
+          },
+          "403": {
+            "description": "Authorization",
+            "schema": {
+              "$ref": "#/definitions/Messages"
+            }
+          },
+          "415": {
+            "description": "Mandatory parameters missing.",
+            "schema": {
+              "$ref": "#/definitions/Messages"
+            }
+          },
+          "422": {
+            "description": "Wrong/Invalid parameter(s).",
+            "schema": {
+              "$ref": "#/definitions/Messages"
+            }
+          },
+          "500": {
+            "description": "No response from Backend.",
+            "schema": {
+              "$ref": "#/definitions/Messages"
+            }
+          },
+          "504": {
+            "description": "TimeOut from server.",
+            "schema": {
+              "$ref": "#/definitions/Messages"
+            }
+          }
+        },
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "description": "Servicio que permite cargar un producto",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/UploadProductReq"
+            },
+            "description": "Body",
+            "required": true
+          },
+          {
+            "name": "ApplicationId",
+            "in": "header",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "CompanyCode",
+            "in": "header",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    }
+  },
+  "basePath": "/url/base/detoolbox/test",
+  "definitions": {
+    "CreateUserReq": {
+      "type": "object",
+      "properties": {
+        "serviceOrder": {
+          "type": "object",
+          "properties": {
+            "serviceOrderTypes": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "serviceOrderTypeCode": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "CreateUserRes": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string"
+        },
+        "paging": {
+          "$ref": "#/definitions/Paging"
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Message"
+          }
+        }
+      }
+    },
+    "GetProductRes": {
+      "type": "object",
+      "properties": {
+        "product": {
+          "type": "object",
+          "properties": {
+            "productId": {
+              "type": "integer"
+            },
+            "productName": {
+              "type": "string"
+            },
+            "productStock": {
+              "type": "integer"
+            },
+            "productIsReserved": {
+              "type": "boolean"
+            }
+          }
+        },
+        "paging": {
+          "$ref": "#/definitions/Paging"
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Message"
+          }
+        }
+      }
+    },
+    "GetProductRes204": {
+      "type": "object",
+      "properties": {
+        "serviceOrder": {
+          "type": "object"
+        },
+        "paging": {
+          "$ref": "#/definitions/Paging"
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Message"
+          }
+        }
+      }
+    },
+    "UploadProductReq": {
+      "type": "object",
+      "properties": {
+        "product": {
+          "type": "object",
+          "properties": {
+            "productName": {
+              "type": "string"
+            },
+            "productStock": {
+              "type": "integer"
+            },
+            "hasWarranty": {
+              "type": "boolean"
+            },
+            "storageId": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "UploadProductRes": {
+      "type": "object",
+      "properties": {
+        "product": {
+          "type": "object",
+          "properties": {
+            "product_status": {
+              "type": "string"
+            },
+            "product_id": {
+              "type": "string"
+            }
+          }
+        },
+        "messages": {
+          "$ref": "#/definitions/Message"
+        },
+        "paging": {
+          "$ref": "#/definitions/Paging"
+        }
+      }
+    },
+    "Paging": {
+      "type": "object",
+      "properties": {
+        "offset": {
+          "type": "integer"
+        },
+        "limit": {
+          "type": "integer"
+        },
+        "total": {
+          "type": "integer"
+        }
+      }
+    },
+    "Message": {
+      "type": "object",
+      "description": "Mensaje que se muestra en el response con su respectivo código de error y http status.",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "help": {
+          "type": "string"
+        }
+      }
+    },
+    "Messages": {
+      "type": "object",
+      "properties": {
+        "menssages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Message"
+          }
+        }
+      }
+    }
+  },
+  "schemes": [
+    "https"
+  ],
+  "host": "iib-tve.toolboxtve.com"
+}
